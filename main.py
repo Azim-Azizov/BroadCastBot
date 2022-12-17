@@ -8,9 +8,6 @@ from pymongo import MongoClient
 from config import *
 
 
-sent, fail, total = 0, 0, 0
-
-
 db = MongoClient(DB_URL).get_database(DB_NAME)
 user_coll = db.get_collection(USER_COLL_NAME)
 chat_coll = db.get_collection(CHAT_COLL_NAME)
@@ -26,7 +23,6 @@ async def broadcast(app, message):
     if not message.reply_to_message:
         return await message.reply("Reply to a message to broadcast it.")
     msg = message.reply_to_message
-    global sent, fail, total
     sent = 0
     fail = 0
     total = 0
