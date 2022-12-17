@@ -41,9 +41,6 @@ async def broadcast(app, message):
     global total, sent, fail, stop
     if total:
         return await message.reply("Eyni vaxtda yalnız bir yayın etmək olar.")
-    sent = 0
-    fail = 0
-    total = 0
     stop = False
     data = []
     dev = await message.reply(f"Broadcast is starting...", reply_markup = STOP)
@@ -92,6 +89,9 @@ async def broadcast(app, message):
         await message.reply(f"Broadcast ended.\n\nmessage sent to {total} chats. From those {sent} were successful,  and {fail} were failed.", reply_markup=None)
     else:
         await message.reply(f"Broadcast ended.\n\nmessage sent to {total} chats. From those {sent} were successful,  and {fail} were failed.", reply_markup=None)
+    sent = 0
+    fail = 0
+    total = 0
 
 app.start()
 idle()
